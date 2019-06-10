@@ -6,7 +6,19 @@
 # https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
 from scrapy import signals
-
+import random
+class Useragentdownload(object):
+    HEADERS = ['Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.60 Safari/537.17',
+               'Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.15 (KHTML, like Gecko) Chrome/24.0.1295.0 Safari/537.15',
+               'Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.14 (KHTML, like Gecko) Chrome/24.0.1292.0 Safari/537.14']
+    def process_request(self,request,spider):
+        user_agent = random.choice(self.HEADERS)
+        request.headers['User-Agent'] = user_agent
+class Ipproxydownload(object):
+    ipproxy = ['183.129.207.89:28080','125.122.151.238:9000','27.43.190.15:9999','106.14.11.65:8118','115.196.53.15:9000']
+    def process_request(self,request,spider):
+        proxy = random.choice(self.ipproxy)
+        request.meta['proxy'] = proxy#meta 是一个字典包含请求头里面的一些信息
 
 class BossSpiderMiddleware(object):
     # Not all methods need to be defined. If a method is not defined,

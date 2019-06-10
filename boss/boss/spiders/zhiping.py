@@ -11,7 +11,7 @@ class ZhipingSpider(CrawlSpider):
     start_urls = ['https://www.zhipin.com/c101010100/?query=python&page=1']
 
     rules = (
-        Rule(LinkExtractor(allow=r'.+\?query=python&page=[1-2]'), follow=True),
+        Rule(LinkExtractor(allow=r'.+\?query=python&page=[1-10]'), follow=True),
         Rule(LinkExtractor(allow=r'.+job_detail/.+~'),callback='parse_item',follow=False)
     )
 

@@ -19,7 +19,7 @@ class MongoPipline(object):
             mongo_address=crawler.settings.get('MONGO_ADDRESS'),
             mongo_name=crawler.settings.get('MONGO_NAME')
         )
-    #用于获取setting中对MONGO_URI和db的配置制定mongpdb需要连接的地址mongo_uri和数据库名称mongodb
+    #用于获取setting中对MONGO_ADDRESS和NAME的配置制定mongpdb需要连接的地址和数据库名称
     def open_spider(self,spider):
         self.client = pymongo.MongoClient(self.mongo_address)#连接mongodb
         self.db = self.client[self.mongo_name]
